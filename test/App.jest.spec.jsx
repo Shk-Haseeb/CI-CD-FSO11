@@ -1,9 +1,9 @@
-// App.jest.spec.jsx
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import axiosMock from 'axios'
 import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom'
+import { BrowserRouter } from 'react-router-dom'
 import App from '../src/App'
 
 jest.mock('axios')
@@ -17,7 +17,11 @@ describe('<App />', () => {
     })
 
     await act(async () => {
-      render(<App />)
+      render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      )
     })
 
     expect(axiosMock.get).toHaveBeenCalledTimes(1)
@@ -28,7 +32,11 @@ describe('<App />', () => {
     axiosMock.get.mockRejectedValueOnce(new Error())
 
     await act(async () => {
-      render(<App />)
+      render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      )
     })
 
     expect(screen.getByTestId('error')).toBeVisible()
