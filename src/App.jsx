@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  BrowserRouter,
   Routes,
   Route,
   useMatch
@@ -44,11 +43,8 @@ const App = () => {
   if (isLoading) return <LoadingSpinner />
   if (error) return <ErrorMessage error={error} />
 
-  return (
-    <BrowserRouter>
-      <AppRoutes pokemonList={pokemonList} />
-    </BrowserRouter>
-  )
+  return <AppRoutes pokemonList={pokemonList} />
 }
 
 export default App
+
