@@ -36,17 +36,19 @@ jobs:
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
 
 
-
   tag_release:
     needs: [simple_deployment_pipeline]
     if: github.event_name == 'push' && !contains(toJson(github.event.commits), '#skip')
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.64.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: ${{ github.event_name == 'push' }}
 
-        #Does it work now?
+
+          #Does it work now?
