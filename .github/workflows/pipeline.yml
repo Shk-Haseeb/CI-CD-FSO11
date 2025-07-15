@@ -56,7 +56,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: '✅ Deployment succeeded for `${{ github.repository }}` at `${{ github.sha }}`'
+          args: ' Deployment succeeded for `${{ github.repository }}` at `${{ github.sha }}`'
 
   notify_failure:
     needs: [simple_deployment_pipeline]
@@ -74,3 +74,6 @@ jobs:
             Commit: ${{ github.event.head_commit.message }}
             Author: ${{ github.event.head_commit.author.name }}
             Link: ${{ github.event.head_commit.url }}
+
+
+      #Exercise 11.18
