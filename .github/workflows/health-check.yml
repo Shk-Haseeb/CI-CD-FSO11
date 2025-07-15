@@ -1,0 +1,17 @@
+name: Periodic Health Check
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch: 
+
+jobs:
+  check_health:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check health endpoint
+        uses: lakuapik/gh-action-url-health-check@v1.2.0
+        with:
+          url: 'https://pokedex-5s4h.onrender.com/health'
+          expected_status: 200
